@@ -1,0 +1,51 @@
+.calendar {
+    display: inline;
+}
+
+.weekDayTitles {
+    display: flex;
+}
+
+.weekDayTitle {
+    flex: 1 1 14%;
+    padding: 2vmax 0 0;
+    font-size: calc(10px + 2vmin);
+    color: #fff;
+    background-color: #282c34;
+}
+
+.month {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.day {
+    flex: 1 1 14%;
+    padding: 2vmin 0;
+    font-size: calc(10px + 2vmin);
+    color: #fff;
+    background-color: #282c34;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #eee;
+    color: #282c34;
+
+}
+
+.today {
+    color: #5E978A;
+}
+
+.weekend {
+    color: #EE786F;
+}
+
+.notCurrentMonth{
+    color: #7B8694;
+}
+
+.weekend.notCurrentMonth {
+    color: #B5504A;
+}
