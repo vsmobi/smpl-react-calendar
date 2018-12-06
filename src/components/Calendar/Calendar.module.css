@@ -1,14 +1,19 @@
 .calendar {
-    display: inline;
 }
 
-.weekDayTitles {
+.item {
+    display: flex;
+    flex: 1 1 14%;
+    box-sizing: border-box;
+}
+
+.daysOfTheWeekContainer {
     display: flex;
 }
 
-.weekDayTitle {
-    flex: 1 1 14%;
-    padding: 2vmax 0 0;
+.dayOfTheWeek {
+    justify-content: flex-start;
+    padding: 1vmax 1vmin;
     font-size: calc(10px + 2vmin);
     color: #fff;
     background-color: #282c34;
@@ -19,19 +24,21 @@
     flex-wrap: wrap;
 }
 
-.day {
-    flex: 1 1 14%;
-    padding: 2vmin 0;
-    font-size: calc(10px + 2vmin);
+.dateContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 8vmin;
+    padding: 1vmin;
+    cursor: pointer;
+    font-size: calc(8px + 2vmin);
     color: #fff;
     background-color: #282c34;
-    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.day:hover {
-    background-color: #eee;
+.dateContainer:hover {
     color: #282c34;
-
+    background-color: #eee;
 }
 
 .today {
@@ -42,10 +49,29 @@
     color: #EE786F;
 }
 
-.notCurrentMonth{
+.notThisMonth {
     color: #7B8694;
 }
 
-.weekend.notCurrentMonth {
+.weekend.notThisMonth {
     color: #B5504A;
+}
+
+.date {
+}
+
+.activities {
+    display: none;
+    font-size: 2vmin;
+}
+
+@media screen and (min-width: 900px) {
+
+    .activities {
+        display: block;
+    }
+
+    .dateContainer {
+        font-size: 2vmin;
+    }
 }

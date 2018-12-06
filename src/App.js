@@ -8,7 +8,10 @@ class App extends Component {
         return (
             <div className={styles.app}>
                 <header className={styles.header}>Simple calendar</header>
-              <Calendar />
+                <Calendar
+                    locale={navigator.language}
+                    date={new Date()}
+                />
             </div>
         );
     }

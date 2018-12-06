@@ -6,34 +6,36 @@ import {
     format,
     startOfMonth,
     endOfMonth,
-    isToday,
-    isThisMonth,
+    isSameDay,
+    isSameMonth,
     isWeekend
 } from 'date-fns';
 
-function createDayItem(date) {
+function createDateItem(date) {
 
-    const dayNumber = format(date, 'D');
+    const dayNumber = format(date, 'd');
+
     return {
         date: dayNumber,
         selected: false,
-        isToday: isToday(date),
-        isNotInThisMonth: !isThisMonth(date),
-        isWeekend: isWeekend(date)
+        isToday: isSameDay(new Date(), date),
+        isNotInThisMonth: !isSameMonth(date, new Date()),
+        isWeekend: isWeekend(date),
+        info: ""
     }
 }
 
-export default function getMonthDays(date) {
-    const days = [];
+export default function getMonthDates(date) {
+    const dates = [];
     const firstDate = startOfMonth(date);
     let currentDate = startOfWeek(firstDate, { weekStartsOn: 1 });
     const lastDayInMonth = endOfMonth(date);
     const lastDate = endOfWeek(lastDayInMonth, { weekStartsOn: 1 });
 
-    do {
-        days.push(createDayItem(currentDate));
+    while (isAfter(lastDate, currentDate)) {
+        dates.push(createDateItem(currentDate));
         currentDate = addDays(currentDate, 1);
-    } while (isAfter(lastDate, currentDate));
+    }
 
-    return days;
+    return dates;
 }

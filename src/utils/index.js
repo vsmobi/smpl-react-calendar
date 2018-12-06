@@ -1,7 +1,7 @@
-import getDayOfTheWeekTitles from './getDayOfTheWeekTitles';
-import getMonthDays from './getMonthDays';
+import getDaysOfTheWeek from './getDaysOfTheWeek';
+import getMonthDates from './getMonthDates';
 
 export {
-    getDayOfTheWeekTitles,
-    getMonthDays
+    getDaysOfTheWeek,
+    getMonthDates
 }

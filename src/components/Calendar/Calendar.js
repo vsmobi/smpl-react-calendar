@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getDayOfTheWeekTitles, getMonthDays } from '../../utils';
+import { getDaysOfTheWeek, getMonthDates } from '../../utils';
 import styles from './Calendar.module.css';
 
 class Calendar extends Component {
 
     getDayStyle(day) {
-        const dayStyle = [styles.day];
+        const dayStyle = [styles.dateContainer, styles.item];
 
         if (day.isToday) {
             dayStyle.push(styles.today)
@@ -17,33 +18,37 @@ class Calendar extends Component {
         }
 
         if (day.isNotInThisMonth) {
-            dayStyle.push(styles.notCurrentMonth)
+            dayStyle.push(styles.notThisMonth)
         }
 
         return classnames(dayStyle);
     }
 
     render() {
-        const today = new Date();
-        const weekDayTitles = getDayOfTheWeekTitles(today);
-        const monthDays = getMonthDays(today);
+        const daysOfTheWeek = getDaysOfTheWeek(this.props.date, this.props.locale);
+        const monthDates = getMonthDates(this.props.date);
 
         return (
             <div className={styles.calendar}>
-                <div className={styles.weekDayTitles}>
-                    {weekDayTitles.map(weekDayTitle => {
+                <div className={styles.daysOfTheWeekContainer}>
+                    {daysOfTheWeek.map(dayOfTheWeek => {
                         return (
-                            <div key={weekDayTitle} className={styles.weekDayTitle}>
-                                {weekDayTitle}
+                            <div key={dayOfTheWeek} className={classnames(styles.item, styles.dayOfTheWeek)}>
+                                {dayOfTheWeek}
                             </div>
                         );
                     })}
                 </div>
                 <div className={styles.month}>
-                    {monthDays.map((day, index) => {
+                    {monthDates.map((day, index) => {
                         return (
                             <div key={`${day}${index}`} className={this.getDayStyle(day)}>
-                                {day.date}
+                                <div className={styles.date}>
+                                    {day.date}
+                                </div>
+                                <div className={styles.activities}>
+                                    {day.info}
+                                </div>
                             </div>
                         );
                     })}
@@ -52,5 +57,10 @@ class Calendar extends Component {
         );
     }
 }
+
+Calendar.propTypes = {
+    locale: PropTypes.string,
+    date: PropTypes.instanceOf(Date)
+};
 
 export default Calendar;
