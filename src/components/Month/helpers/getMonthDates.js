@@ -27,9 +27,10 @@ function createDateItem(date) {
 
 export default function getMonthDates(date) {
     const dates = [];
-    const firstDate = startOfMonth(date);
+    const safeDate = new Date(date);
+    const firstDate = startOfMonth(safeDate);
     let currentDate = startOfWeek(firstDate, { weekStartsOn: 1 });
-    const lastDayInMonth = endOfMonth(date);
+    const lastDayInMonth = endOfMonth(safeDate);
     const lastDate = endOfWeek(lastDayInMonth, { weekStartsOn: 1 });
 
     while (isAfter(lastDate, currentDate)) {

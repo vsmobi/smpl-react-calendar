@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getDaysOfTheWeek, getMonthDates } from '../../utils';
-import styles from './Calendar.module.css';
+import { getDaysOfTheWeek, getMonthDates } from './helpers';
+import styles from './Month.module.css';
 
-class Calendar extends Component {
+class Month extends Component {
 
     getDayStyle(day) {
         const dayStyle = [styles.dateContainer, styles.item];
@@ -25,11 +25,12 @@ class Calendar extends Component {
     }
 
     render() {
-        const daysOfTheWeek = getDaysOfTheWeek(this.props.date, this.props.locale);
-        const monthDates = getMonthDates(this.props.date);
+        const { date, locale, className } = this.props;
+        const daysOfTheWeek = getDaysOfTheWeek(date, locale);
+        const monthDates = getMonthDates(date);
 
         return (
-            <div className={styles.calendar}>
+            <div className={className}>
                 <div className={styles.daysOfTheWeekContainer}>
                     {daysOfTheWeek.map(dayOfTheWeek => {
                         return (
@@ -58,9 +59,10 @@ class Calendar extends Component {
     }
 }
 
-Calendar.propTypes = {
+Month.propTypes = {
+    className: PropTypes.string,
     locale: PropTypes.string,
     date: PropTypes.instanceOf(Date)
 };
 
-export default Calendar;
+export default Month;

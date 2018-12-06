@@ -33,7 +33,7 @@
     font-size: calc(8px + 2vmin);
     color: #fff;
     background-color: #282c34;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .dateContainer:hover {
