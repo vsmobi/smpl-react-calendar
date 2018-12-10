@@ -1,42 +1,62 @@
-.calendar {
+:root {
+    --title: 18px;
+    --item-font-size: 16px;
+    --activities-font-size: 16px;
+    --month-name-margin-bottom: 10px;
+}
+
+.month {
+    background-color: #282c34;
+    padding: 0 10px 40px;
+}
+
+.monthName {
+    color: #fff;
+    font-size: var(--title);
+    margin-bottom: var(--month-name-margin-bottom);
 }
 
 .item {
     display: flex;
-    flex: 1 1 14%;
-    box-sizing: border-box;
+    flex: 1 1 13%;
+    font-size: var(--item-font-size);
 }
 
 .daysOfTheWeekContainer {
     display: flex;
 }
 
-.dayOfTheWeek {
-    justify-content: flex-start;
-    padding: 1vmax 1vmin;
-    font-size: calc(10px + 2vmin);
+.dayOfTheWeekItem {
     color: #fff;
-    background-color: #282c34;
+    align-items: center;
 }
 
-.month {
+.dayOfTheWeekItem:before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+}
+
+.datesContainer {
     display: flex;
     flex-wrap: wrap;
+    flex: 1 1 auto;
 }
 
-.dateContainer {
-    flex-direction: column;
-    align-items: flex-start;
-    height: 8vmin;
-    padding: 1vmin;
-    cursor: pointer;
-    font-size: calc(8px + 2vmin);
+.dateWrapper {
     color: #fff;
-    background-color: #282c34;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    display: flex;
+    /*border: 1px solid rgba(255, 255, 255, 0.05);*/
 }
 
-.dateContainer:hover {
+.dateWrapper:before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+}
+
+.dateWrapper:hover {
     color: #282c34;
     background-color: #eee;
 }
@@ -57,21 +77,14 @@
     color: #B5504A;
 }
 
-.date {
-}
-
 .activities {
     display: none;
-    font-size: 2vmin;
+    font-size: var(--activities-font-size);
 }
 
-@media screen and (min-width: 900px) {
 
+@media (min-width: 992px) {
     .activities {
         display: block;
-    }
-
-    .dateContainer {
-        font-size: 2vmin;
     }
 }

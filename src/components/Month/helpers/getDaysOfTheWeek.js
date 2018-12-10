@@ -7,9 +7,8 @@ function getWeekDayTitle(date, locale) {
 }
 
 export default function getDaysOfTheWeek(date, locale) {
-    const safeDate = new Date(date);
     const weekDays = [];
-    let currentDate = startOfWeek(safeDate, { weekStartsOn: 1 });
+    let currentDate = startOfWeek(date, { weekStartsOn: 1 });
 
     for (let i = 0; i < 7; i++) {
         weekDays.push(getWeekDayTitle(currentDate, locale));

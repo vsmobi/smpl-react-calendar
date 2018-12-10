@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getDaysOfTheWeek, getMonthDates } from './helpers';
+import { getDaysOfTheWeek, getMonthDates, getMonthName } from './helpers';
 import styles from './Month.module.css';
 
 class Month extends Component {
 
     getDayStyle(day) {
-        const dayStyle = [styles.dateContainer, styles.item];
+        const dayStyle = [styles.item, styles.dateWrapper];
 
         if (day.isToday) {
             dayStyle.push(styles.today)
@@ -30,25 +30,30 @@ class Month extends Component {
         const monthDates = getMonthDates(date);
 
         return (
-            <div className={className}>
+            <div className={classnames(styles.month, className)}>
+                <div className={styles.monthName}>
+                    {getMonthName(date, locale)}
+                </div>
                 <div className={styles.daysOfTheWeekContainer}>
                     {daysOfTheWeek.map(dayOfTheWeek => {
                         return (
-                            <div key={dayOfTheWeek} className={classnames(styles.item, styles.dayOfTheWeek)}>
+                            <div key={dayOfTheWeek} className={classnames(styles.item, styles.dayOfTheWeekItem)}>
                                 {dayOfTheWeek}
                             </div>
                         );
                     })}
                 </div>
-                <div className={styles.month}>
+                <div className={styles.datesContainer}>
                     {monthDates.map((day, index) => {
                         return (
-                            <div key={`${day}${index}`} className={this.getDayStyle(day)}>
-                                <div className={styles.date}>
-                                    {day.date}
-                                </div>
-                                <div className={styles.activities}>
-                                    {day.info}
+                            <div className={this.getDayStyle(day)}>
+                                <div key={`${day}${index}`} className={styles.dateItem}>
+                                    <div className={styles.date}>
+                                        {day.date}
+                                    </div>
+                                    <div className={styles.activities}>
+                                        {day.info}
+                                    </div>
                                 </div>
                             </div>
                         );
