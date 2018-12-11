@@ -7,6 +7,7 @@ import styles from './Month.module.css';
 class Month extends Component {
 
     getDayStyles(day) {
+        const { hasBorder } = this.props;
         const dayStyles = [];
 
         if (day.isToday) {
@@ -21,6 +22,10 @@ class Month extends Component {
             }
         }
 
+        if(hasBorder) {
+            dayStyles.push(styles.bordered)
+
+        }
         return dayStyles;
     }
 
@@ -60,7 +65,7 @@ class Month extends Component {
                 {monthDates.map((day, index) => {
                     const dayStyles = classnames(styles.item, styles.dateWrapper, this.getDayStyles(day));
                     return (
-                        <div  key={`${day}${index}`} className={dayStyles}>
+                        <div key={`${day}${index}`} className={dayStyles}>
                             <div>
                                 <div>
                                     {day.date}
@@ -92,7 +97,8 @@ class Month extends Component {
 Month.propTypes = {
     className: PropTypes.string,
     locale: PropTypes.string,
-    date: PropTypes.instanceOf(Date)
+    date: PropTypes.instanceOf(Date),
+    hasBorder: PropTypes.bool
 };
 
 export default Month;
