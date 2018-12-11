@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { range } from '../../utils';
 import Month from '../Month/Month';
 import styles from './Year.module.css';
 
 class Year extends Component {
 
     renderYear() {
-        const months = [];
 
-        for (let i = 0; i < 12; i++) {
-            const currentDate = new Date().setMonth(i);
-
-            months.push(
+        return range(12).map(monthNumber => {
+            const currentDate = new Date();
+            currentDate.setMonth(monthNumber);
+            return (
                 <Month
+                    key={currentDate}
                     className={styles.month}
                     locale={this.props.locale}
                     date={currentDate}
                 />
-            )
-        }
-
-        return months;
+            );
+        });
     }
 
     render() {

@@ -60,8 +60,8 @@ class Month extends Component {
                 {monthDates.map((day, index) => {
                     const dayStyles = classnames(styles.item, styles.dateWrapper, this.getDayStyles(day));
                     return (
-                        <div className={dayStyles}>
-                            <div key={`${day}${index}`}>
+                        <div  key={`${day}${index}`} className={dayStyles}>
+                            <div>
                                 <div>
                                     {day.date}
                                 </div>

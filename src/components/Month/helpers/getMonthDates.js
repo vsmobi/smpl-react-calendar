@@ -24,9 +24,10 @@ function createDateItem(date, initDate) {
 
 export default function getMonthDates(initDate) {
     const dates = [];
+    const numberOfDatesToCreate = 42;
     const firstDate = startOfMonth(initDate);
     let currentDate = startOfWeek(firstDate, { weekStartsOn: 1 });
-    const lastDate = addDays(currentDate, 42);
+    const lastDate = addDays(currentDate, numberOfDatesToCreate);
 
     while (isAfter(lastDate, currentDate)) {
         dates.push(createDateItem(currentDate, initDate));
