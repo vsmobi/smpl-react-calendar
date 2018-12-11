@@ -6,59 +6,84 @@ import styles from './Month.module.css';
 
 class Month extends Component {
 
-    getDayStyle(day) {
-        const dayStyle = [styles.item, styles.dateWrapper];
+    getDayStyles(day) {
+        const dayStyles = [];
 
         if (day.isToday) {
-            dayStyle.push(styles.today)
+            dayStyles.push(styles.today)
+        } else {
+            if (day.isWeekend) {
+                dayStyles.push(styles.weekend)
+            }
+
+            if (day.isNotInThisMonth) {
+                dayStyles.push(styles.notThisMonth)
+            }
         }
 
-        if (day.isWeekend) {
-            dayStyle.push(styles.weekend)
-        }
-
-        if (day.isNotInThisMonth) {
-            dayStyle.push(styles.notThisMonth)
-        }
-
-        return classnames(dayStyle);
+        return dayStyles;
     }
 
-    render() {
-        const { date, locale, className } = this.props;
+    renderMonthName() {
+        const { date, locale } = this.props;
+
+        return (
+            <div className={styles.monthName}>
+                {getMonthName(date, locale)}
+            </div>
+        );
+    }
+
+    renderDaysOfTheWeek() {
+        const { date, locale } = this.props;
         const daysOfTheWeek = getDaysOfTheWeek(date, locale);
+
+        return (
+            <div className={styles.daysOfTheWeekContainer}>
+                {daysOfTheWeek.map(dayOfTheWeek => {
+                    return (
+                        <div key={dayOfTheWeek} className={classnames(styles.item, styles.dayOfTheWeekItem)}>
+                            {dayOfTheWeek}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
+    renderDates() {
+        const { date } = this.props;
         const monthDates = getMonthDates(date);
 
         return (
-            <div className={classnames(styles.month, className)}>
-                <div className={styles.monthName}>
-                    {getMonthName(date, locale)}
-                </div>
-                <div className={styles.daysOfTheWeekContainer}>
-                    {daysOfTheWeek.map(dayOfTheWeek => {
-                        return (
-                            <div key={dayOfTheWeek} className={classnames(styles.item, styles.dayOfTheWeekItem)}>
-                                {dayOfTheWeek}
-                            </div>
-                        );
-                    })}
-                </div>
-                <div className={styles.datesContainer}>
-                    {monthDates.map((day, index) => {
-                        return (
-                            <div className={this.getDayStyle(day)}>
-                                <div key={`${day}${index}`} className={styles.dateItem}>
-                                    <div className={styles.date}>
-                                        {day.date}
-                                    </div>
-                                    <div className={styles.activities}>
-                                        {day.info}
-                                    </div>
+            <div className={styles.datesContainer}>
+                {monthDates.map((day, index) => {
+                    const dayStyles = classnames(styles.item, styles.dateWrapper, this.getDayStyles(day));
+                    return (
+                        <div className={dayStyles}>
+                            <div key={`${day}${index}`}>
+                                <div>
+                                    {day.date}
+                                </div>
+                                <div className={styles.activities}>
+                                    {day.info}
                                 </div>
                             </div>
-                        );
-                    })}
-                </div>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
+    render() {
+        const { className } = this.props;
+
+        return (
+            <div className={classnames(styles.month, className)}>
+                {this.renderMonthName()}
+                {this.renderDaysOfTheWeek()}
+                {this.renderDates()}
             </div>
         );
     }

@@ -1,18 +1,20 @@
+@import '../../styles/variables.css';
+
 :root {
-    --title: 18px;
-    --item-font-size: 16px;
-    --activities-font-size: 16px;
+    --title-font-size: var(--default-font-size-large);
+    --item-font-size: var(--default-font-size);
+    --activities-font-size: var(--default-font-size-small);
     --month-name-margin-bottom: 10px;
 }
 
 .month {
     background-color: #282c34;
-    padding: 0 10px 40px;
+    padding: 0 var(--default-padding) 40px;
 }
 
 .monthName {
     color: #fff;
-    font-size: var(--title);
+    font-size: var(--title-font-size);
     margin-bottom: var(--month-name-margin-bottom);
 }
 

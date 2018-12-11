@@ -1,0 +1,32 @@
+@import '../../styles/variables.css';
+
+.year {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.month {
+    flex: auto;
+    box-sizing: border-box;
+}
+
+
+@media (min-width: 576px) {
+    .month {
+        flex-basis: 50%;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .month {
+        flex-basis: 25%;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .month {
+        flex-basis: 16.6%;
+    }
+}
