@@ -10,7 +10,7 @@
 
 .header {
     background-color: #282c34;
-    font-size: var(--default-font-size-extra);
+    font-size: var(--font-size-extra);
     color: white;
     flex: 1 1 auto;
     padding: var(--header-height-padding) var(--default-padding);

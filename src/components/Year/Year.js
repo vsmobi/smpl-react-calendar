@@ -6,9 +6,7 @@ import Month from '../Month/Month';
 import styles from './Year.module.css';
 
 class Year extends Component {
-
     renderYear() {
-
         return range(12).map(monthNumber => {
             const currentDate = new Date();
             currentDate.setMonth(monthNumber);

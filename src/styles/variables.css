@@ -1,8 +1,8 @@
 :root {
-    --default-font-size-small: 14px;
-    --default-font-size: 16px;
-    --default-font-size-large: 18px;
-    --default-font-size-extra: 20px;
+    --font-size-small: 14px;
+    --font-size-default: 16px;
+    --font-size-large: 18px;
+    --font-size-extra: 20px;
 
     --default-padding: 10px;
 }

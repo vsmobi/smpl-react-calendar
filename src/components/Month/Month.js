@@ -5,7 +5,6 @@ import { getDaysOfTheWeek, getMonthDates, getMonthName } from './helpers';
 import styles from './Month.module.css';
 
 class Month extends Component {
-
     getDayStyles(day) {
         const { hasBorder } = this.props;
         const dayStyles = [];

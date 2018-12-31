@@ -1,5 +1,2 @@
-import range from './range';
+export * from './range';
 
-export {
-    range
-}

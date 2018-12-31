@@ -1,3 +1,3 @@
-export default function range(length) {
+export function range(length) {
     return [...Array(length).keys()];
 }

@@ -1,9 +1,9 @@
 @import '../../styles/variables.css';
 
 :root {
-    --title-font-size: var(--default-font-size-large);
-    --item-font-size: var(--default-font-size);
-    --activities-font-size: var(--default-font-size-small);
+    --title-font-size: var(--font-size-large);
+    --item-font-size: var(--font-size-default);
+    --activities-font-size: var(--font-size-small);
     --month-name-margin-bottom: 10px;
 }
 
