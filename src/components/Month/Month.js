@@ -7,25 +7,13 @@ import styles from './Month.module.css';
 class Month extends Component {
     getDayStyles(day) {
         const { hasBorder } = this.props;
-        const dayStyles = [];
-
-        if (day.isToday) {
-            dayStyles.push(styles.today)
-        } else {
-            if (day.isWeekend) {
-                dayStyles.push(styles.weekend)
-            }
-
-            if (day.isNotInThisMonth) {
-                dayStyles.push(styles.notThisMonth)
-            }
-        }
-
-        if(hasBorder) {
-            dayStyles.push(styles.bordered)
-
-        }
-        return dayStyles;
+        return classnames([
+            styles.item,
+            styles.dateWrapper,
+            {[styles.weekend]: day.isWeekend},
+            {[styles.notThisMonth]: day.isNotInThisMonth},
+            {[styles.today] : day.isToday},
+            {[styles.bordered]: hasBorder}]);
     }
 
     renderMonthName() {
@@ -62,7 +50,7 @@ class Month extends Component {
         return (
             <div className={styles.datesContainer}>
                 {monthDates.map((day, index) => {
-                    const dayStyles = classnames(styles.item, styles.dateWrapper, this.getDayStyles(day));
+                    const dayStyles = this.getDayStyles(day);
                     return (
                         <div key={`${day}${index}`} className={dayStyles}>
                             <div>
