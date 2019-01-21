@@ -8,7 +8,7 @@
 }
 
 .month {
-    background-color: #282c34;
+    background-color: var(--color-gray-dark);
     padding: 0 var(--default-padding) 40px;
 }
 

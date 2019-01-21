@@ -9,7 +9,7 @@
 }
 
 .header {
-    background-color: #282c34;
+    background-color: var(--color-gray-dark);
     font-size: var(--font-size-extra);
     color: white;
     flex: 1 1 auto;
