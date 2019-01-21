@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getDaysOfTheWeek, getMonthDates, getMonthName } from './helpers';
+import { getDaysOfTheWeek, getMonthDates, getMonthName } from '../../helpers';
 import styles from './Month.module.css';
 
 class Month extends Component {

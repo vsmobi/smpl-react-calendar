@@ -1,5 +1,5 @@
 import { startOfWeek, addDays } from 'date-fns';
-import { range } from '../../../utils';
+import { range } from '../utils';
 
 function getWeekDayTitle(date, locale) {
     return new Intl.DateTimeFormat(locale, {
