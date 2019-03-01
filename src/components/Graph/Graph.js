@@ -3,17 +3,18 @@ import styles from './Graph.module.css';
 import classnames from 'classnames';
 
 import { range } from '../../utils';
-import { getDaysInMonth } from 'date-fns';
+import { getDaysInMonth, isAfter } from 'date-fns';
 import { getMonthName, mapMonth } from '../../helpers';
 
 class Graph extends PureComponent {
 
     renderDates() {
+        const maxNumberOfDays = 31;
         return (
             <div className={styles.date}>
                 <div className={styles.monthNamesRow} />
-                {range(31).map(date => {
-                    return <div className={classnames(styles.item, styles.dateItem)}>
+                {range(maxNumberOfDays).map(date => {
+                    return <div key={date} className={classnames(styles.item, styles.dateItem)}>
                         {date + 1}
                     </div>
                 })}
@@ -22,15 +23,19 @@ class Graph extends PureComponent {
     }
 
     renderMonth() {
-        return mapMonth((monthDate) => {
+        return mapMonth((month) => {
             return (
-                <div className={styles.monthColumn}>
+                <div key={month} className={styles.monthColumn}>
                     <div className={styles.monthNamesRow}>
-                        {getMonthName(monthDate, navigator.language, true)}
+                        {getMonthName(month, navigator.language, true)}
                     </div>
                     <div>
-                        {range(getDaysInMonth(monthDate)).map(() => {
-                            return <div className={styles.item} />
+                        {range(getDaysInMonth(month)).map((date) => {
+                            const current = new Date(month);
+                            current.setDate(date + 1);
+
+                            const isFuture = isAfter(current, new Date());
+                            return <div key={current} className={classnames(styles.item, { [styles.future]: isFuture })} />
                         })}
                     </div>
                 </div>
@@ -49,9 +54,3 @@ class Graph extends PureComponent {
 }
 
 export default Graph;
-
-
-
-
-
-

@@ -10,10 +10,12 @@ class Month extends Component {
         return classnames([
             styles.item,
             styles.dateWrapper,
-            {[styles.weekend]: day.isWeekend},
-            {[styles.notThisMonth]: day.isNotInThisMonth},
-            {[styles.today] : day.isToday},
-            {[styles.bordered]: hasBorder}]);
+            {
+                [styles.weekend]: day.isWeekend,
+                [styles.notThisMonth]: day.isNotInThisMonth,
+                [styles.today]: day.isToday,
+                [styles.bordered]: hasBorder
+            }]);
     }
 
     renderMonthName() {
